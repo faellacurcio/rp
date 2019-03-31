@@ -1,0 +1,1 @@
+C:/Users/rafae/Google Drive/MESTRADO (Universidade Federal do Ceará)/2019.1/Reconhecimento de Padrões
