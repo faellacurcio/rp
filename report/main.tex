@@ -90,12 +90,12 @@ Esse relatório contém um curto resumo das diferentes técnicas de validação 
 
 \section{\textit{Cross-validation}}
 
-Validação cruzada é uma de várias técnicas que é utilizada para estimar a qualidade de generalização de um algoritmo a partir da separação de um conjunto de dados. Seu principal objetivo é quantificar a eficiência de um modelo para a chegada de novos dados além de permitir a detecção de problemas como \textit{overfitting} (uma especialização excessiva no conjunto de dados perdendo assim a capacidade de generalização do modelo) . Em um modelo preditivo é típico haver dois grupos de dados: Dados de treinamento, dados de teste. Há diversas técnicas comumente utilizadas para realizar a validação cruzada
+Validação cruzada é uma de várias técnicas que é utilizada para estimar a qualidade de generalização de um algoritmo a partir da separação de um conjunto de dados. Seu principal objetivo é quantificar a eficiência de um modelo para a chegada de novos dados além de permitir a detecção de problemas como \textit{overfitting} (uma especialização excessiva no conjunto de dados perdendo assim a capacidade de generalização do modelo) . Em um modelo preditivo é típico haver dois grupos de dados: Dados de treinamento, dados de teste. Há diversas técnicas comumente utilizadas para realizar a validação cruzada.
 
-Validação cruzada é composta pela decomposição de um conjunto de dados em subconjuntos de treinamento e teste, podendo também incluir subconjunto de validação. O primeiro subconjunto, de treinamento, será o grupo utilizado para alimentar o modelo. Já o subconjunto, de teste, será utilizado para avaliar a porcentagem de acerto do modelo comparado a classificação do modelo com a classificação real. O ultimo conjunto, de validação, é utilizado em alguns classificadores como referencia para detectar \textit{overfitting} como por exemplo em redes neurais. Uma regra de ouro da validação cruzada diz que os conjuntos de treinamento, teste e validação não devem possuir elementos em comum! As sub-sessões abaixo exemplificam os métodos de validação cruzada utilizadas no trabalho de Reconhecimento de padrões.
+Validação cruzada é composta pela decomposição de um conjunto de dados em subconjuntos de treinamento e teste, podendo também incluir subconjunto de validação. O primeiro subconjunto, de treinamento, será utilizado para alimentar o modelo. Já o subconjunto, de teste, será utilizado para avaliar a porcentagem de acerto do modelo comparado a classificação do modelo com a classificação real. O ultimo conjunto, de validação, é utilizado em alguns classificadores como referencia para detectar \textit{overfitting} como é feito em redes neurais. Uma regra de ouro da validação cruzada diz que os conjuntos de treinamento, teste e validação não devem possuir elementos em comum! As sub-sessões abaixo exemplificam os métodos de validação cruzada utilizadas no trabalho de Reconhecimento de padrões.
 
 \subsection{\textit{Leave-one-out}}
-Esse método de é um dos mais simples de ser implementado. Ele consistem em utilizar o conjunto completo menos uma amostra para o subconjunto de treinamento, e apenas essa amostra que não foi incluída no grupo de treinamento para ser o subconjunto teste. Para um conjunto de N pontos, são utilizados N subconjuntos de treinamento/teste, e a eficiência do modelo é dada em porcentagem pela média de acertos. como é mostrado na Figura \ref{fig:loo}.
+Esse método de é um dos mais simples de ser implementado. Ele consistem em utilizar o conjunto completo menos uma amostra para o subconjunto de treinamento, e apenas essa amostra que não foi incluída no grupo de treinamento para ser o subconjunto teste. Para um conjunto de N pontos, são utilizados N-1 amostas no subconjuntos de treinamento e 1 amostra no subconjunto de teste como é mostrado na Figura \ref{fig:loo}. A eficiência do modelo é dada em porcentagem pela média de acertos. 
 
 \begin{figure}[h]
     \includegraphics[width=8cm]{img/Leave-One-Out-Cross-Validation.png}
@@ -106,7 +106,7 @@ Esse método de é um dos mais simples de ser implementado. Ele consistem em uti
 
 \subsection{\textit{k-fold}}
 
-O \textit{k-fold} pode ser visto como uma extensão do \textit{leave-one-out} porém ao invés de utilizar uma única amostra para o conjunto de teste, os dados serão divididos em K conjuntos de aproximadamente mesmo tamanho. Similarmente ao que foi mostrado na sub-sessão anterior, esse método é utilizado para estimar o quão eficaz o modelo será ao encontrar dados novos, ou seja, quantificar a eficiência de uma técnica de classificação. A figura \ref{fig:kfold} mostra a divisão dos dados, onde cada bloco (\textit{train/test}) contem \textbf{k} conjuntos de aproximadamente mesmo tamanho.
+O \textit{k-fold} pode ser visto como uma extensão do \textit{leave-one-out} porém ao invés de utilizar uma única amostra para o conjunto de teste, os dados serão divididos em K conjuntos de aproximadamente mesmo tamanho. Similarmente ao que foi mostrado na sub-sessão anterior, esse método é utilizado para estimar o quão eficaz o modelo será ao encontrar dados novos, ou seja, quantificar a eficiência de uma técnica de classificação. A figura \ref{fig:kfold} mostra a divisão dos dados, onde cada bloco (\textit{train/test}) contém \textbf{k} conjuntos de aproximadamente mesmo tamanho.
 
 \begin{figure}[h!]
     \includegraphics[width=7cm]{img/k-fold1.png}
@@ -117,7 +117,7 @@ O \textit{k-fold} pode ser visto como uma extensão do \textit{leave-one-out} po
 
 \subsection{\textit{Holdout}}
 
-\textit{Holdout} é um método de atribui de forma aleatórias os dados dentro de dois grupos, conjunto de treinamento e conjunto de teste. Os elementos são escolhidos de forma aleatória para cada grupo, como uma forma de evitar viés na seleção dos dados.  O tamanho dos conjuntos é arbitrário mas via de regra é utilizado um conjunto menor para teste. Uma proporção típicamente utilizada é 80/20, onde 80\% dos dados vão para treinamento e 20\% dos dados vão para teste. Uma comparação do \textit{holdout} com o \textit{k-fold} é mostrado na Figura \ref{fig:holdout1}.
+\textit{Holdout} é um método de atribui de forma aleatórias os dados dentro de dois grupos, conjunto de treinamento e conjunto de teste. Os elementos são escolhidos de forma aleatória para cada grupo como uma forma de evitar viés na seleção dos dados.  O tamanho dos conjuntos é arbitrário mas via de regra é utilizado um conjunto menor para teste. Uma proporção tipicamente utilizada é 80/20, onde 80\% dos dados vão para treinamento e 20\% dos dados vão para teste. Uma comparação do \textit{holdout} com o \textit{k-fold} é mostrado na Figura \ref{fig:holdout1}.
 
 \begin{figure}[h!]
     \includegraphics[width=8cm]{img/holdout1.png}
@@ -136,7 +136,7 @@ O KNN é um dos primeiros métodos dentro do contexto de classificação devido 
 
 \subsection{Algoritmo do Centroide mais Próximo}
 
-Similar ao método 1-NN, o algoritmo do centroide mais próximo usa essa mesma estratégia porém essa distancia é calculada de acordo com os contróides dos dados do conjunto de treinamento. O centróide é calculado a partir da média das localizações dos pontos de uma mesma classe. Esse processo é repetido para todas as classes até que exista apenas um ponto para representar cada uma das classes.
+Similar ao método 1-NN, o algoritmo do centroide mais próximo usa a mesma estratégia de distancias euclidianas, porém essa distancia é calculada de acordo com os contróides dos dados do conjunto de treinamento. O centróide é calculado a partir da média das localizações dos pontos de uma mesma classe. Esse processo é repetido para todas as classes até que exista apenas um ponto para representar cada uma das classes.
 
 \subsection{\textit{Linear discriminant analysis} (LDA)}
 
